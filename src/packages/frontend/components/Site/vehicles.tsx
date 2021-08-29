@@ -1,1 +1,2 @@
-export const Vehicles = () => <div> </div>
+
+export const Vehicles = () => <div></div>
