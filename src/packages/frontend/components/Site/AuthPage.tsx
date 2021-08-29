@@ -4,7 +4,7 @@ import * as React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { Dashboard } from './Dashboard';
 import firebase from 'firebase';
-import MapContainer from '../map';
+import MapComponent from '../map';
 import { db } from '../../../firebase/firebase';
 import { Box, Card, CardContent, CircularProgress, Grid, Typography } from '@material-ui/core';
 
@@ -92,7 +92,7 @@ export default function AuthPage() {
   return (
     // <Dashboard />
     <>
-    <MapContainer /> 
+    <MapComponent /> 
   </>
     )
 
