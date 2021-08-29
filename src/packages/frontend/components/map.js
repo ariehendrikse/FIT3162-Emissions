@@ -1,5 +1,6 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, InfoWindow, TransitLayer, Marker } from '@react-google-maps/api';
+
 
 const containerStyle = {
   width: '1000px',
@@ -10,6 +11,13 @@ const center = {
   lat: -3.745,
   lng: -38.523
 };
+
+const divStyle = {
+  background: `white`,
+  border: `1px solid #ccc`,
+  padding: 15
+}
+
 const API_KEY = process.env.GOOGLE_API_KEY
 
 function MapComponent() {
@@ -38,7 +46,19 @@ function MapComponent() {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        { /* Child components, such as markers, info windows, etc. */ }
+        <TransitLayer/>
+        <Marker
+      position={center}
+    />
+        { <InfoWindow
+      // onLoad={onLoad}
+      position={center}
+    >
+      <div style={divStyle}>
+        <h1>InfoWindow</h1>
+      </div>
+    </InfoWindow>
+        /* Child components, such as markers, info windows, etc. */ }
         <></>
       </GoogleMap>
   ) : <></>
