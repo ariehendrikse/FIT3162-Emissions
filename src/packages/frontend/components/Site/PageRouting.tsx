@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Box, Button, IconButton, Table, Toolbar, Typography } from "@material-ui/core";
 import { Menu , ChevronRight } from "@material-ui/icons";
+import MapComponent from '../vehicle-routing/map'
 // import { Button } from '@material-ui/core';
 import MainAppBar from "./AppBar"; 
 import {
@@ -10,14 +11,11 @@ import {
   Link
 } from "react-router-dom";
 
-
-
-
 // import {Line} from 'react-chartjs-2';
 import ReactDOM from "react-dom";
 import {useState} from 'react'
 import NavMenu from "./NavMenu";
-import EmissionsDashboard from "../../emissions/EmissionsDashboard";
+import EmissionsDashboard from "../emissions/EmissionsDashboard";
 
 // import {ZoomChart} from "./components/ZoomChart";
 // import { ApexChart } from "./components/ApexChart";
@@ -40,7 +38,7 @@ const PageRouting = () => {
                 <EmissionsDashboard />
               </Route>
               <Route path="/route">
-                <div></div>
+                <MapComponent /> 
               </Route>
               <Route path="/fleet">
                 <div></div>
