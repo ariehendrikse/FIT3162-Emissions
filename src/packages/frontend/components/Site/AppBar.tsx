@@ -1,5 +1,7 @@
 import React from 'react';
 import { alpha, makeStyles, Theme, createStyles, ThemeProvider } from '@material-ui/core/styles';
+import { theme } from './theme';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,7 +11,6 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { theme} from './theme';
 import firebase from 'firebase';
 
 // import emissions_logo from '../../images/.png'

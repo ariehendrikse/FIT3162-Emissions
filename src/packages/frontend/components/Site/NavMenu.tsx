@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SpacingGrid() {
+export default function NavMenu() {
   const [spacing, setSpacing] = useState(2);
   const classes = useStyles();
 
