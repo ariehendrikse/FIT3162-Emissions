@@ -2,10 +2,11 @@
 import { useEffect, useState} from 'react';
 import * as React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { Dashboard } from './Dashboard';
+import EmissionsDashboard from '../../emissions/EmissionsDashboard';
 import firebase from 'firebase';
 import { db } from '../../../firebase/firebase';
 import { Box, Card, CardContent, CircularProgress, Grid, Typography } from '@material-ui/core';
+import PageRouting from './PageRouting';
 
 // Configure FirebaseUI.
 const uiConfig = {
@@ -89,7 +90,7 @@ export default function AuthPage() {
 
   )
   return (
-    <Dashboard />
+    <PageRouting />
     )
 
 }
