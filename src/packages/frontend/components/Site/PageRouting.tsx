@@ -26,7 +26,7 @@ const PageRouting = () => {
   return (
     <Box> 
       <MainAppBar />
-        <Box pt={6.5} height={'calc(100vh - 20px)'}>
+        <Box pt={6.5} height={'calc(100vh - 60px)'}>
           <Router>
             {/* A <Switch> looks through its children <Route>s and
                 renders the first one that matches the current URL. */}
