@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Box, Button, IconButton, Table, Toolbar, Typography } from "@material-ui/core";
 import { Menu , ChevronRight } from "@material-ui/icons";
-import MapComponent from "../vehicle-routing/map"
+import MapComponent from "../vehicle-routing/map";
+import PermanentDrawer from "../vehicle-routing/drawer";
 // import { Button } from '@material-ui/core';
 import MainAppBar from "./AppBar"; 
 import {
@@ -39,6 +40,7 @@ const PageRouting = () => {
               </Route>
               <Route path="/route">
                 <MapComponent /> 
+                <PermanentDrawer/>
               </Route>
               <Route path="/fleet">
                 <div></div>
