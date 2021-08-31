@@ -48,6 +48,8 @@
     ]
   },
   "devDependencies": {
+    "@types/google.maps": "^3.45.6",
+    "@types/googlemaps": "^3.43.3",
     "@types/react-router-dom": "^5.1.8",
     "@ubilabs/google-maps-react-hooks": "^1.5.0"
   }

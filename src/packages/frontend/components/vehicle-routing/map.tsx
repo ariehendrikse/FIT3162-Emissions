@@ -19,12 +19,11 @@ const divStyle = {
   padding: 15
 }
 
-const API_KEY = process.env.GOOGLE_API_KEY
 
 function MapComponent() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: API_KEY
+    googleMapsApiKey: 'AIzaSyBatkKtQkdIob7Ss41D80JYIdUkiT0fH2o'
   })
 
   const [map, setMap] = React.useState(null)
