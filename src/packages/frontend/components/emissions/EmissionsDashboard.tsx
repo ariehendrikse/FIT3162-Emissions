@@ -136,6 +136,11 @@ const TripHistory = () => {
 const EmissionsDashboard = () => {
   const classes = useStyles();
 
+<<<<<<< HEAD
+=======
+  
+
+>>>>>>> ed6908a937c891badedbbce0f624c6a701af5a39
   return <div>
   <Box height="90vh">
     <Grid container style={{paddingTop: 30, paddingLeft:  30, height: 'calc(100vh - 150px)', width: '100vw'}} spacing={8}  >
