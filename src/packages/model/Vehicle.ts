@@ -2,7 +2,7 @@ type Vehicle = {
   make: VehicleMake
   model: VehicleModel
   year: number
-  co2_profile: CO2Profile
+  co2_profile?: CO2Profile
 }
 
 export type CO2Profile = {
