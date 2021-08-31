@@ -4,7 +4,7 @@ import { GoogleMap, useJsApiLoader, InfoWindow, TransitLayer, Marker } from '@re
 
 const containerStyle = {
   width: '1920px',
-  height: '740px'
+  height: '1080px'
 };
 
 
