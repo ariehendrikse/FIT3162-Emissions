@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Paper } from "@material-ui/core";
 import firebase from "firebase";
-import { db } from "../../firebase/firebase";
+import { db } from "../../../firebase/firebase";
 
 const EmissionsDashboard = () => <div>
   <Box height="90vh">
