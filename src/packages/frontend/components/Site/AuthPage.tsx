@@ -2,8 +2,9 @@
 import { useEffect, useState} from 'react';
 import * as React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import EmissionsDashboard from '../../emissions/EmissionsDashboard';
+import EmissionsDashboard from '../emissions/EmissionsDashboard';
 import firebase from 'firebase';
+import MapComponent from '../vehicle-routing/map';
 import { db } from '../../../firebase/firebase';
 import { Box, Card, CardContent, CircularProgress, Grid, Typography } from '@material-ui/core';
 import PageRouting from './PageRouting';
