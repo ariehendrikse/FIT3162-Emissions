@@ -33,9 +33,10 @@ let example_depot_b: Depot = {
   id: "2"
 }
 let example_vehicle: Vehicle = {
-  make: {name: "Ford"},
-  model: {name: "Transit"},
-  year: 2021
+  make:  "Ford",
+  model:  "Transit",
+  year: '2021',
+  trim: 'none'
 }
 let example_trips: Trip[] = [
   {
@@ -94,7 +95,7 @@ const EmissionsChart = (props: {data: {date: Date, number: Number}[]}) => {
       }
     },
   }
-  return <Line data={data} options={options} />
+  return <Line data={data}  />
 }
 
 const TripHistory = () => {

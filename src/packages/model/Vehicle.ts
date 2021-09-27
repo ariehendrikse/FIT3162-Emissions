@@ -1,7 +1,9 @@
 type Vehicle = {
-  make: VehicleMake
-  model: VehicleModel
-  year: number
+  make: string
+  model: string
+  year: string
+  trim?: string
+  epaID?: string
   co2_profile?: CO2Profile
 }
 
