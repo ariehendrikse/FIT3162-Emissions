@@ -4,7 +4,7 @@ import { Menu , ChevronRight } from "@material-ui/icons";
 import MapComponent from "../vehicle-routing/map";
 import PermanentDrawer from "../vehicle-routing/drawer";
 // import { Button } from '@material-ui/core';
-import MainAppBar from "./AppBar"; 
+import MainAppBar from "./AppBar";
 import {
   HashRouter as Router,
   Switch,
@@ -27,7 +27,7 @@ const PageRouting = () => {
   return (
     <Box> 
       <MainAppBar />
-        <Box pt={6.5}>
+        <Box pt={6.5} height={'calc(100vh - 20px)'}>
           <Router>
             {/* A <Switch> looks through its children <Route>s and
                 renders the first one that matches the current URL. */}
