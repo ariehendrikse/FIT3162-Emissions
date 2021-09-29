@@ -17,6 +17,8 @@ import ReactDOM from "react-dom";
 import {useState} from 'react'
 import NavMenu from "./NavMenu";
 import EmissionsDashboard from "../emissions/EmissionsDashboard";
+import { FleetDashboard } from "../fleet/FleetDashboard";
+import { InfrastructureDashboard } from "../infrastructure/InfrastructureDashboard";
 
 // import {ZoomChart} from "./components/ZoomChart";
 // import { ApexChart } from "./components/ApexChart";
@@ -43,10 +45,10 @@ const PageRouting = () => {
                 <PermanentDrawer/>
               </Route>
               <Route path="/fleet">
-                <div></div>
+                <FleetDashboard />
               </Route>
               <Route path="/infrastructure">
-                <div></div>
+                <InfrastructureDashboard />
               </Route>
               <Route path="/">
                 <NavMenu />

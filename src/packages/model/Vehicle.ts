@@ -1,14 +1,19 @@
 type Vehicle = {
-  make: VehicleMake
-  model: VehicleModel
-  year: number
-  co2_profile: CO2Profile
+  make: string
+  model: string
+  year: string
+  trim?: string
+  epaID?: string
+  co2_profile?: CO2Profile
+  cargo_capacity_kg?: number
+  vin?: string
 }
 
 export type CO2Profile = {
   highway?: number
-  combined: number
+  combined?: number
   urban?: number
+  co2?: number
 }
 
 export type VehicleModel = {

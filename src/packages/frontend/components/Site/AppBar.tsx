@@ -17,8 +17,6 @@ import firebase from 'firebase';
 import { Button } from '@material-ui/core';
 import { Eco } from '@material-ui/icons';
 
-
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     grow: {

@@ -1,6 +1,6 @@
 type User= {
   name: string
-  photo_url: string
+  photo_url?: string
   id: string
 }
 
