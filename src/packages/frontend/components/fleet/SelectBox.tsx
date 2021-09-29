@@ -63,7 +63,7 @@ export default function SelectBox(props: SelectBoxProps) {
   };
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl sx={{ my: 1, width: 300 }}>
         <InputLabel>{label}</InputLabel>
         <Select
           disabled={!searchValue}

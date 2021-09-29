@@ -78,7 +78,7 @@ export const FindVehicle = (props: FindVehicleProps) => {
 
   const {style} = props
   return (
-    <Box style={style}>
+    <Box style={style} m={2}>
       {boxes.map(SelectBox)}
     </Box>
   )

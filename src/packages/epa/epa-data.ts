@@ -1,3 +1,4 @@
+import mpgTo100lkm from "../logic/mpg";
 import Vehicle, { CO2Profile } from "../model/Vehicle";
 
 export const getMakesForYear = async (value: number | string) => {
@@ -85,9 +86,12 @@ export const getVehicleByEPA =   async (epaID?: string) => {
         let year = Array.prototype.slice.call(data.getElementsByTagName("year"))[0].innerHTML
         let make = Array.prototype.slice.call(data.getElementsByTagName("make"))[0].innerHTML
         let model = Array.prototype.slice.call(data.getElementsByTagName("model"))[0].innerHTML
+        let combined = mpgTo100lkm(parseInt(Array.prototype.slice.call(data.getElementsByTagName("comb08U"))[0].innerHTML))
+        let co2 = parseInt(Array.prototype.slice.call(data.getElementsByTagName("co2"))[0].innerHTML) / 1.6
 
         resolve({
-          year, make, model
+          year, make, model,
+          co2_profile: {co2, combined}
         })
       })
       .catch(error => {
