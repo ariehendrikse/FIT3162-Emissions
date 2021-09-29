@@ -4,6 +4,8 @@ import { getVehicleByEPA } from "../../../epa/epa-data";
 import { db } from "../../../firebase/firebase";
 import { addVehicle } from "../../../firebase/vehicle";
 import Vehicle from "../../../model/Vehicle";
+import CustomFormProps from "../site/collections/CustomFormProps";
+
 
 export function Field(props: TextFieldProps & {setValue: (val: string) => any}) {
   const {label, value, setValue, type, required} = props
@@ -27,22 +29,22 @@ export function Field(props: TextFieldProps & {setValue: (val: string) => any}) 
   );
 }
 
-const VehicleEpaData = (props: {vehicle?: Vehicle, style?: React.CSSProperties, download?: boolean}) => {
-  const {vehicle, style, download} = props
-  const [newVehicle, setNewVehicle] = useState<Vehicle | undefined>(vehicle)
+const VehicleEpaData = (props: CustomFormProps<Vehicle>) => {
+  const {item, style, download} = props
+  const [newVehicle, setNewVehicle] = useState<Vehicle | undefined>(item)
   const handleSubmit = (evt: any) => {
     evt.preventDefault();
     addVehicle(newVehicle)
-}
+  }
   useEffect(() => {
-    if (download && vehicle?.epaID) {
-      getVehicleByEPA(vehicle?.epaID)
-        .then(v=> setNewVehicle({...v,...vehicle}))
+    if (download && item?.epaID) {
+      getVehicleByEPA(item?.epaID)
+        .then(v=> setNewVehicle({...v,...item}))
     }
     if (!download) {
-      setNewVehicle(vehicle)
+      setNewVehicle(item)
     }
-  }, [vehicle])
+  }, [item])
 
   return (
     <form onSubmit={handleSubmit}>

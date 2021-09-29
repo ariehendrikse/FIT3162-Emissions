@@ -3,7 +3,7 @@ import { db } from "./firebase";
 
 export const addVehicle = (vehicle?: Vehicle) => {
   if (vehicle) {
-    db.collection('vehicles').add(vehicle)
+    db.collection('vehicles').doc(vehicle.vin).set(vehicle)
 
   }
 }
