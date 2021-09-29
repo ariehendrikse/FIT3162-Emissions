@@ -1,21 +1,21 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader, InfoWindow, TransitLayer, Marker } from '@react-google-maps/api';
 
-var directionsRequest = {
-  origin: LatLng | String | google.maps.Place,
-  destination: LatLng | String | google.maps.Place,
-  travelMode: TravelMode,
-  transitOptions: TransitOptions,
-  drivingOptions: DrivingOptions,
-  unitSystem: UnitSystem,
-  waypoints[]: DirectionsWaypoint,
-  optimizeWaypoints: Boolean,
-  provideRouteAlternatives: Boolean,
-  avoidFerries: Boolean,
-  avoidHighways: Boolean,
-  avoidTolls: Boolean,
-  region: String
-}
+// var directionsRequest = {
+//   origin: LatLng | String | google.maps.Place,
+//   destination: LatLng | String | google.maps.Place,
+//   travelMode: TravelMode,
+//   transitOptions: TransitOptions,
+//   drivingOptions: DrivingOptions,
+//   unitSystem: UnitSystem,
+//   waypoints[]: DirectionsWaypoint,
+//   optimizeWaypoints: Boolean,
+//   provideRouteAlternatives: Boolean,
+//   avoidFerries: Boolean,
+//   avoidHighways: Boolean,
+//   avoidTolls: Boolean,
+//   region: String
+// }
 
 function initMap(): void {
   const directionsService = new google.maps.DirectionsService();
@@ -61,7 +61,7 @@ function calculateAndDisplayRoute(
     .then((response) => {
       directionsRenderer.setDirections(response);
     })
-    .catch((e) => window.alert("Directions request failed due to " + status));
+    .catch((e) => window.alert("Directions request failed due to ")); // +status
 }
 
 const containerStyle = {
@@ -91,9 +91,10 @@ function MapComponent() {
   const [map, setMap] = React.useState(null)
 
   const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map)
+    // const bounds = new window.google.maps.LatLngBounds();
+    // map.fitBounds(bounds);
+    // setMap(map)
+    initMap()
   }, [])
 
   const onUnmount = React.useCallback(function callback(map) {
