@@ -21,7 +21,7 @@ export default function ListCustomItems<T>(props: ListCustomItemsProps<T>) {
 
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <List component="nav" aria-label="main mailbox folders">
+      <List style={{maxHeight: 'calc(100vh - 150px)', overflow: 'auto'}} component='nav'  aria-label="main mailbox folders" >
         {items.map((item , i) => 
           <ListItemButton
             selected={selectedIndex === i}

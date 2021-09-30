@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Box, Button, IconButton, Table, Toolbar, Typography } from "@material-ui/core";
 import { Menu , ChevronRight } from "@material-ui/icons";
-import MapComponent from "../vehicle-routing/map";
-import PermanentDrawer from "../vehicle-routing/drawer";
+// import MapComponent from "../vehicle-routing/map";
+// import PermanentDrawer from "../vehicle-routing/drawer";
+import MapWithADirectionsRenderer from "../vehicle-routing/map"
 // import { Button } from '@material-ui/core';
 import MainAppBar from "./AppBar";
 import {
@@ -41,8 +42,9 @@ const PageRouting = () => {
                 <EmissionsDashboard />
               </Route>
               <Route path="/route">
-                <MapComponent /> 
-                <PermanentDrawer/>
+                {/* <MapComponent /> 
+                <PermanentDrawer/> */}
+                <MapWithADirectionsRenderer/>
               </Route>
               <Route path="/fleet">
                 <FleetDashboard />
