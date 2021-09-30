@@ -27,7 +27,7 @@ export const FindVehicle = (props: FindVehicleProps) => {
         model: (model as string),
         year: (year as string),
         epaID: (value?.value as string),
-        trim: value.name
+        trim: value.name,
       })
     }
     else {

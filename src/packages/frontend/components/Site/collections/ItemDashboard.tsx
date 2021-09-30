@@ -1,4 +1,4 @@
-import { Box, Grid, ListItemIcon, ListItemText } from "@material-ui/core"
+import { Box, Grid, ListItemIcon, ListItemText, Paper } from "@material-ui/core"
 import { Add } from "@material-ui/icons"
 import { useEffect, useState } from "react"
 import ListCustomItems from "./CustomList"
@@ -29,26 +29,30 @@ export function ItemDashboard<T>(props: ItemDashboardProps<T>): JSX.Element {
   }, [itemIndex])
   
   return (
-    <Box m={1}>
-      <Grid container spacing={2}>
-        <Grid item xs={2}>
-          <ListCustomItems 
-            items={
-              [<AddButton />, ...items.map(v => <SelectItem item={v}/>)]
+    <Box m={3}>
+      <Paper>
+        <Box m={1}>
+          <Grid container spacing={2}>
+            <Grid item xs={2}>
+              <ListCustomItems 
+                items={
+                  [<AddButton />, ...items.map(v => <SelectItem item={v}/>)]
+                  }
+                onSelect={setItemIndex}
+              />
+            </Grid>
+            <Grid item xs={10}>
+              { itemIndex === 0 ?
+                <AddItem /> :
+                itemIndex === -1 ? 
+                "Select or add an item"
+                : <ViewItem item={items[itemIndex - 1]} />
               }
-            onSelect={setItemIndex}
-          />
-        </Grid>
-        <Grid item xs={10}>
-          { itemIndex === 0 ?
-            <AddItem /> :
-            itemIndex === -1 ? 
-            "Select or add an item"
-            : <ViewItem item={items[itemIndex - 1]} />
-          }
-        </Grid>
+            </Grid>
 
-      </Grid>
+          </Grid>
+        </Box>
+      </Paper>
     </Box>
 
   )

@@ -13,6 +13,7 @@ import SelectedListItem from "../site/collections/CustomList"
 import { SelectListItemProps, ViewItemProps } from "../site/collections/ItemCollection"
 import { ItemDashboard } from "../site/collections/ItemDashboard"
 import InfrastructureListItem from "./InfrastrucutreListItem"
+import MapWithMarker from "./MapWithMarker"
 
 
 // using generic types here to change between vehicles, trips, infrastruture.
@@ -50,7 +51,8 @@ export const ViewInfrastructure = (props: {item: Infrastrucure}) => {
           Viewing infrastructure {item.name}
         </Grid>
         <Grid item xs={6}>
-          Add view location info here {item.coordinates}
+          <MapWithMarker />
+          Add view location info here {item.coordinates.lat} {item.coordinates.lon}
         </Grid>
       </Grid>
     </Paper>)
