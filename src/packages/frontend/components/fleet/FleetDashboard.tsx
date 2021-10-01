@@ -52,7 +52,7 @@ export const ViewVehicle = (props: {item: Vehicle}) => {
       <Grid container>
         <Grid item xs={6}>
           <div style={{height: 'calc(70vh - 150px)',margin: 20 }}>
-            <SelectInfrastructure />
+            <SelectInfrastructure showMap callback={item => console.log(item?.coordinates, "From callback")}/>
           </div>
          </Grid>
         <Grid item xs={6}>

@@ -13,12 +13,13 @@ export type SelectHasCoordinatesProps<T> = {
   MarkerElement: MarkerElementType,
   render: (item: T) => JSX.Element,
   children?: JSX.Element[] | JSX.Element,
-  showMap?: boolean
+  showMap?: boolean,
+  callback?: (item?: HasCoordinates) => any
 }
 
 export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps<T>) {
     
-  const {itemsListener, MarkerElement, render, children, showMap} = props
+  const {itemsListener, MarkerElement, render, children, showMap, callback} = props
 
   const [items, setItems] = useState<(T & HasCoordinates)[]>([])
   const [currentIndex, setCurrentIndex] = useState<number>(0)
@@ -51,6 +52,9 @@ export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps
 
   const handleChange = (event: any) => {
     setCurrentIndex(parseInt(event.target.value));
+    if (callback) {
+      callback(items[currentIndex] ? items[currentIndex] : undefined)
+    } 
   };
 
   const commonProps = ({viewport, setViewPort})
