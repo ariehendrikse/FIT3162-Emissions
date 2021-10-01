@@ -12,7 +12,7 @@ export type FindVehicleProps = {
   style?: React.CSSProperties;
   set: (vehicle?: Vehicle) => any;
 }
-
+ 
 export const FindVehicle = (props: FindVehicleProps) => {
   const {set} = props
   const [year, setYear] = useState<string | undefined>(undefined)
