@@ -5,29 +5,9 @@ import { db } from "../../../firebase/firebase";
 import { addVehicle } from "../../../firebase/vehicle";
 import Vehicle from "../../../model/Vehicle";
 import CustomFormProps from "../site/collections/CustomFormProps";
+import Field from "../site/Field";
 
 
-export function Field(props: TextFieldProps & {setValue: (val: string) => any}) {
-  const {label, value, setValue, type, required} = props
-  
-  
-  return (
-        <Box>
-          <Typography variant='caption'>
-            {label}<br/>
-          </Typography>
-          <TextField
-            fullWidth
-            type={type ? type : "text"}
-            value={value}
-            variant='outlined'
-            onChange={e => setValue(e.target.value)}
-            required={required}
-          />
-        </Box>
-        
-  );
-}
 
 const VehicleEpaData = (props: CustomFormProps<Vehicle>) => {
   const {item, style, download} = props

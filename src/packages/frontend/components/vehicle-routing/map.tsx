@@ -39,14 +39,15 @@ const MapWithADirectionsRenderer = compose(
     }
   })
 )((props: { directions: any; }) =>
-  <GoogleMap
-    defaultZoom={7}
-    defaultCenter={new google.maps.LatLng(-37.8774, 145.0450)}
-  >
-    {props.directions && <DirectionsRenderer directions={props.directions} />}
-  </GoogleMap>
-);
+  <div style={{ height: `800px` }} >
 
-<MapWithADirectionsRenderer />
+    <GoogleMap
+      defaultZoom={7}
+      defaultCenter={new google.maps.LatLng(-37.8774, 145.0450)}
+    >
+      {props.directions && <DirectionsRenderer directions={props.directions} />}
+    </GoogleMap>
+  </div>
+);
 
 export default React.memo(MapWithADirectionsRenderer)

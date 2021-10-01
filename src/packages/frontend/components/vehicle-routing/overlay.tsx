@@ -1,7 +1,6 @@
 // file to display overlay and render markers
 import React from 'react';
 import Select from 'react-select';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const markers = [
   { label: "Warehouse 1", value: 1 },

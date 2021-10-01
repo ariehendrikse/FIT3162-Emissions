@@ -45,14 +45,16 @@ const PageRouting = () => {
               <Route path="/route">
                 {/* <MapComponent /> 
                 <PermanentDrawer/> */}
+                <Overlay/>
+
                 <MapWithADirectionsRenderer/>
+
               </Route>
               <Route path="/fleet">
                 <FleetDashboard />
               </Route>
               <Route path="/infrastructure">
                 <InfrastructureDashboard />
-                <Overlay/>
               </Route>
               <Route path="/">
                 <NavMenu />

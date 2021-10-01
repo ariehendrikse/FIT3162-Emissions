@@ -1,19 +1,18 @@
-import { Box, Button, Grid, List, ListItem, ListItemIcon, ListItemText, Paper } from "@material-ui/core"
+import { Box, Button, Grid, List, ListItem, ListItemIcon, ListItemText, Paper, Typography } from "@material-ui/core"
 import { Add } from "@material-ui/icons"
 import { useEffect, useState } from "react"
 import { getMakesForYear } from "../../../epa/epa-data"
 import { addInfrastructure, infrastructureListener } from "../../../firebase/infrastructure"
 import { vehiclesListener } from "../../../firebase/vehicle"
 import Infrastructure from "../../../model/Infrastructure"
-import Infrastrucure from "../../../model/Infrastructure"
 import Vehicle from "../../../model/Vehicle"
-import { Field } from "../fleet/VehicleEpaData"
 import CustomFormProps from "../site/collections/CustomFormProps"
 import SelectedListItem from "../site/collections/CustomList"
 import { SelectListItemProps, ViewItemProps } from "../site/collections/ItemCollection"
 import { ItemDashboard } from "../site/collections/ItemDashboard"
+import Field from "../site/Field"
 import InfrastructureListItem from "./InfrastrucutreListItem"
-import MapWithMarker from "./MapWithMarker"
+import MapWithMarker, { InfrastructureMarker } from "./MapWithMarker"
 
 
 // using generic types here to change between vehicles, trips, infrastruture.
@@ -21,7 +20,7 @@ import MapWithMarker from "./MapWithMarker"
 
 
 export const InfrastructureDashboard = () => (
-  <ItemDashboard<Infrastrucure> ViewItem={ViewInfrastructure} listenerFunction={infrastructureListener} SelectItem={InfrastructureListItem} AddItem={AddInfrastructure}/>
+  <ItemDashboard<Infrastructure> ViewItem={ViewInfrastructure} listenerFunction={infrastructureListener} SelectItem={InfrastructureListItem} AddItem={AddInfrastructure}/>
 )
 
 export const AddInfrastructure = () => {
@@ -42,17 +41,21 @@ export const AddInfrastructure = () => {
   ) 
 }
 
-export const ViewInfrastructure = (props: {item: Infrastrucure}) => {
+export const ViewInfrastructure = (props: {item: Infrastructure}) => {
   const {item} = props
   return ( 
     <Paper>
       <Grid container>
-        <Grid item xs={6}>
-          Viewing infrastructure {item.name}
+        <Grid item xs={12}>
+          <Typography align='center' variant='h4' color='textSecondary'>
+            {item.name}
+          </Typography>
         </Grid>
         <Grid item xs={6}>
-          <MapWithMarker />
-          Add view location info here {item.coordinates.lat} {item.coordinates.lon}
+          <MapWithMarker MarkerElement={InfrastructureMarker} item={item}/>
+        </Grid>
+        <Grid item xs={6}>
+         <InfrastructureForm item={item} />
         </Grid>
       </Grid>
     </Paper>)
@@ -76,13 +79,13 @@ const InfrastructureForm = (props: CustomFormProps<Infrastructure>) => {
       <Box m={2} sx={{ flexGrow: 1 }}>
         <Grid spacing={1} container style={style} alignItems='center'>
           <Grid item xs={12}>
-            <Field required label='Name' value={newInfrastructure?.name} setValue={name => setNewInfrastructure({...newInfrastructure as Infrastructure, name})}/>
+            <Field  required label='Name' value={newInfrastructure?.name} setValue={name => setNewInfrastructure({...newInfrastructure as Infrastructure, name})}/>
           </Grid>
           <Grid item xs={6}>
-          <Field required type='number' label='Longitude' value={newInfrastructure?.coordinates?.lon} setValue={lon => setNewInfrastructure({...newInfrastructure as Infrastructure, coordinates: {...newInfrastructure?.coordinates, lon: parseInt(lon) as number}})}/>
+          <Field  inputProps={{min: -180, max: 180,step: 'any'}} required type='number' label='Longitude' value={newInfrastructure?.coordinates?.lon} setValue={lon => setNewInfrastructure({...newInfrastructure as Infrastructure, coordinates: {...newInfrastructure?.coordinates, lon: parseFloat(lon) as number}})}/>
           </Grid>
           <Grid item xs={6}>
-            <Field required type='number' label='Latitude' value={newInfrastructure?.coordinates?.lat} setValue={lat => setNewInfrastructure({...newInfrastructure as Infrastructure, coordinates: {...newInfrastructure?.coordinates, lat: parseInt(lat) as number}})}/>
+            <Field inputProps={{min: -90, max: 90,step: 'any'}} required type='number' label='Latitude' value={newInfrastructure?.coordinates?.lat} setValue={lat => setNewInfrastructure({...newInfrastructure as Infrastructure, coordinates: {...newInfrastructure?.coordinates, lat: parseFloat(lat) as number}})}/>
           </Grid>
           <Grid item xs={12}>
             <Button fullWidth style={{color: 'white', backgroundColor:'green'}} type='submit' >Save</Button>

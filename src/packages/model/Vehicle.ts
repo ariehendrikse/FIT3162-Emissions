@@ -1,3 +1,5 @@
+import HasCoordinates from "./HasCoordinates"
+
 type Vehicle = {
   make: string
   model: string
@@ -7,7 +9,7 @@ type Vehicle = {
   co2_profile?: CO2Profile
   cargo_capacity_kg?: number
   vin?: string
-}
+} & Partial<HasCoordinates>
 
 export type CO2Profile = {
   highway?: number
