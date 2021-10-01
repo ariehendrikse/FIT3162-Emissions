@@ -1,12 +1,13 @@
 import { Box, Grid, ListItemIcon, ListItemText, Paper } from "@material-ui/core"
 import { Add } from "@material-ui/icons"
 import { useEffect, useState } from "react"
+import { Listener } from "../../../../firebase/Listener"
 import ListCustomItems from "./CustomList"
 import { SelectListItemProps, ViewItemProps } from "./ItemCollection"
 
 
 type ItemDashboardProps<T> = {
-  listenerFunction:  (resolve: (items: T[]) => any) => () => void,
+  listenerFunction:  Listener<T>,
   SelectItem: (props: SelectListItemProps<T>) => JSX.Element,
   AddItem: () => JSX.Element,
   ViewItem: (props: ViewItemProps<T>) => JSX.Element,

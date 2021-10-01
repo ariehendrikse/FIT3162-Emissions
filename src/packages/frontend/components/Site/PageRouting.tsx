@@ -46,13 +46,14 @@ const PageRouting = () => {
                 {/* <MapComponent /> 
                 <PermanentDrawer/> */}
                 <MapWithADirectionsRenderer/>
+                <Overlay/>
+
               </Route>
               <Route path="/fleet">
                 <FleetDashboard />
               </Route>
               <Route path="/infrastructure">
                 <InfrastructureDashboard />
-                <Overlay/>
               </Route>
               <Route path="/">
                 <NavMenu />
