@@ -12,12 +12,13 @@ export type SelectHasCoordinatesProps<T> = {
   itemsListener: Listener<T & HasCoordinates>,
   MarkerElement: MarkerElementType,
   render: (item: T) => JSX.Element,
-  children?: JSX.Element[] | JSX.Element
+  children?: JSX.Element[] | JSX.Element,
+  showMap?: boolean
 }
 
 export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps<T>) {
     
-  const {itemsListener, MarkerElement, render, children} = props
+  const {itemsListener, MarkerElement, render, children, showMap} = props
 
   const [items, setItems] = useState<(T & HasCoordinates)[]>([])
   const [currentIndex, setCurrentIndex] = useState<number>(0)
@@ -55,16 +56,18 @@ export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps
   const commonProps = ({viewport, setViewPort})
   return (
       <Box>
-        <div style={{height: 'calc(60vh - 150px)',margin: 20 }}>
+        {showMap 
+        ? <div style={{height: 'calc(60vh - 150px)',margin: 20 }}>
 
-          <CustomMap {...commonProps} >
-            {
-              items.map(item => {
-                return (<MarkerElement item={item} />)
-              })
-            }
-          </CustomMap>
-          </div>
+        <CustomMap {...commonProps} >
+          {
+            items.map(item => {
+              return (<MarkerElement item={item} />)
+            })
+          }
+        </CustomMap>
+        </div> : undefined}
+        
 
         <Select
           fullWidth
