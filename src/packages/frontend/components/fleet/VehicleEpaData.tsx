@@ -5,6 +5,7 @@ import { db } from "../../../firebase/firebase";
 import { addVehicle } from "../../../firebase/vehicle";
 import Vehicle from "../../../model/Vehicle";
 import CustomFormProps from "../site/collections/CustomFormProps";
+import DeleteButton from "../site/DeleteButton";
 import Field from "../site/Field";
 
 
@@ -67,6 +68,13 @@ const VehicleEpaData = (props: CustomFormProps<Vehicle>) => {
           <Grid item xs={12}>
             <Button fullWidth style={{color: 'white', backgroundColor:'green'}} type='submit' >Save</Button>
           </Grid>
+          {
+            !download ? 
+            <Grid item xs={12}>
+              <DeleteButton />
+            </Grid> :
+            undefined
+          }
 
         </Grid>
       </Box>
