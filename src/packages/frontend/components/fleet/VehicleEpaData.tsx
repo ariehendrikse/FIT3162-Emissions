@@ -2,7 +2,7 @@ import { Box, Button, Grid, TextField, TextFieldProps, Typography } from "@mater
 import React, { useEffect, useState } from "react";
 import { getVehicleByEPA } from "../../../epa/epa-data";
 import { db } from "../../../firebase/firebase";
-import { addVehicle } from "../../../firebase/vehicle";
+import { addVehicle, deleteVehicle } from "../../../firebase/vehicle";
 import Vehicle from "../../../model/Vehicle";
 import CustomFormProps from "../site/collections/CustomFormProps";
 import DeleteButton from "../site/DeleteButton";
@@ -29,7 +29,7 @@ const VehicleEpaData = (props: CustomFormProps<Vehicle>) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box p={2} sx={{ flexGrow: 1 }}>
         <Grid spacing={1} container style={style} alignItems='center'>
           <Grid item xs={4}>
             <Field label='Make' value={newVehicle?.make} setValue={make => setNewVehicle({...newVehicle as Vehicle, make})}/>
@@ -71,7 +71,7 @@ const VehicleEpaData = (props: CustomFormProps<Vehicle>) => {
           {
             !download ? 
             <Grid item xs={12}>
-              <DeleteButton />
+              <DeleteButton deleteAction={deleteVehicle(item)}/>
             </Grid> :
             undefined
           }

@@ -49,7 +49,6 @@ export function SearchLocation(props: {callback?: (item: HasCoordinates) => any}
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Search"
           value={search}
           onChange={e=>setSearch(e.target.value)}
           InputProps={{

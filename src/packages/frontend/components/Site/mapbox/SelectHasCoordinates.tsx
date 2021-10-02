@@ -11,17 +11,19 @@ import SearchLocation from "./SearchLocation"
 import MiscelaneousLocationMarker from "./MiscelaneousLocationMarker"
 
 export type SelectHasCoordinatesProps<T> = {
-  itemsListener: Listener<T & HasCoordinates>,
-  MarkerElement: MarkerElementType,
-  render: (item: T) => JSX.Element,
-  children?: JSX.Element[] | JSX.Element,
-  showMap?: boolean,
-  callback?: (item?: HasCoordinates) => any
+  itemsListener?: Listener<T & HasCoordinates>;
+  MarkerElement?: MarkerElementType;
+  render?: (item: T) => JSX.Element;
+  children?: JSX.Element[] | JSX.Element;
+  showMap?: boolean;
+  callback?: (item?: HasCoordinates) => any;
 }
 
 export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps<T>) {
     
-  const {itemsListener, MarkerElement, render, children, showMap, callback} = props
+  const { children, showMap, callback, itemsListener, MarkerElement, render} = props
+  
+
 
   const [items, setItems] = useState<(T & HasCoordinates)[]>([])
   const [currentIndex, setCurrentIndex] = useState<number>(0)
@@ -45,8 +47,11 @@ export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps
     })
   }, [currentItem])
   useEffect(() => {
-    const listener = itemsListener(setItems)
-    return listener
+    if (itemsListener) {
+      const listener = itemsListener(setItems)
+      return listener
+    }
+
   }, [])
   useEffect(()=> {
     if (items.length > 0 ) {
@@ -72,7 +77,8 @@ export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps
           <Typography variant='caption'>
             Location<br/>
           </Typography>
-            <Select
+          {render ? 
+          <Select
             fullWidth
             variant='outlined'
             value={currentIndex}
@@ -82,7 +88,8 @@ export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps
             {items.map((item, i) => 
               <MenuItem value={i}>{render(item)}</MenuItem>)
             }
-          </Select>
+          </Select> : undefined}
+            
         </Box>
         <Box>
           <SearchLocation callback={(v) => {
@@ -95,9 +102,9 @@ export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps
 
         <CustomMap {...commonProps} >
           {
-            [...items.map(item => {
+            [... MarkerElement ? items.map(item => {
               return (<MarkerElement item={item} />)
-            }),
+            }) : [],
             ...miscItem]}
           
         </CustomMap>
