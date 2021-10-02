@@ -12,7 +12,8 @@ import { SelectListItemProps, ViewItemProps } from "../site/collections/ItemColl
 import { ItemDashboard } from "../site/collections/ItemDashboard"
 import Field from "../site/Field"
 import InfrastructureListItem from "./InfrastrucutreListItem"
-import MapWithMarker, { InfrastructureMarker } from "./MapWithMarker"
+import MapWithMarker from "../site/mapbox/MapWithMarker"
+import InfrastructureMarker from "./InfrastructureMarker"
 
 
 // using generic types here to change between vehicles, trips, infrastruture.

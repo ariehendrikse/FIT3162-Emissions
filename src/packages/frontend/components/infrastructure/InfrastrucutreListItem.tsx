@@ -6,10 +6,10 @@ import Foundation from '@mui/icons-material/Foundation';
 import { Box, Grid, Typography } from '@mui/material';
 import Vehicle from '../../../model/Vehicle';
 import { SelectListItemProps } from '../site/collections/ItemCollection';
-import infrastructure from '../../../model/Infrastructure';
+import Infrastructure from '../../../model/Infrastructure';
 
 
-const InfrastrucutreListItem  = (props: SelectListItemProps<infrastructure>) => {
+const InfrastrucutreListItem  = (props: SelectListItemProps<Infrastructure>) => {
   const infrastructure = props.item
   return (
     <Grid container>

@@ -1,9 +1,9 @@
 import HasCoordinates from "./HasCoordinates"
 
-type infrastructure = {
+type Infrastructure = {
   id?: string
   
   name: string
 } & HasCoordinates
 
-export default infrastructure
+export default Infrastructure

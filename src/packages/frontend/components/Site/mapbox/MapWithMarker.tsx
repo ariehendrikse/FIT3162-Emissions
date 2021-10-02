@@ -1,11 +1,11 @@
 import React,{ useEffect, useState } from 'react'
 import MapGL, {GeolocateControl, Marker,InteractiveMapProps, MarkerProps } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import HasCoordinates from '../../../model/HasCoordinates';
+import HasCoordinates from '../../../../model/HasCoordinates';
 import './Marker.css'
-import infrastructure from '../../../model/Infrastructure';
+import Infrastructure from '../../../../model/Infrastructure';
 import Foundation from '@mui/icons-material/Foundation';
-import { CustomMap } from '../site/CustomMap';
+import { CustomMap } from './CustomMap';
 
 export type MarkerElementType = (props: { item: HasCoordinates; }) => JSX.Element
 
@@ -45,29 +45,5 @@ const MapWithMarker = (props: {
 }
 
 
-
-export const InfrastructureMarker = (props: {item: infrastructure | HasCoordinates}) => <CustomMarker {...props}><Foundation /></CustomMarker>
-
-function CustomMarker<T>(props: {item: HasCoordinates & T, children?: JSX.Element})  {
-  const {item, children} = props
-  const [viewport, setViewPort] = useState<MarkerProps>({
-    latitude: item.coordinates.lat as number,
-    longitude: item.coordinates.lon as number
-  })
-  useEffect(() => {
-    setViewPort({
-      ...viewport, 
-      latitude: item.coordinates.lat as number,
-      longitude: item.coordinates.lon as number, 
-    })
-  }, [item])
-  return (<Marker
-            {...viewport} 
-          >
-      <div className="marker">
-        <span><b>{children}</b></span>
-      </div>
-    </Marker>)
-}
 
 export default MapWithMarker

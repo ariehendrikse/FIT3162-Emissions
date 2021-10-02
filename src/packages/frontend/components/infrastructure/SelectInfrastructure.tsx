@@ -1,8 +1,8 @@
 import { Typography } from "@material-ui/core"
 import { infrastructureListener } from "../../../firebase/infrastructure"
 import Infrastructure from "../../../model/Infrastructure"
-import SelectHasCoordinates, { SelectHasCoordinatesProps } from "../site/collections/SelectHasCoordinates"
-import { InfrastructureMarker } from "./MapWithMarker"
+import SelectHasCoordinates, { SelectHasCoordinatesProps } from "../site/mapbox/SelectHasCoordinates"
+import InfrastructureMarker from "./InfrastructureMarker"
 
 const SelectInfrastructure = (props: Partial<SelectHasCoordinatesProps<Infrastructure>>) => <SelectHasCoordinates
   {...props}

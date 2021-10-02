@@ -1,9 +1,7 @@
 import React,{ useEffect, useState } from 'react'
 import MapGL, {GeolocateControl, Marker,InteractiveMapProps, MarkerProps } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import HasCoordinates from '../../../model/HasCoordinates';
-import infrastructure from '../../../model/Infrastructure';
-import Foundation from '@mui/icons-material/Foundation';
+  
 const TOKEN='pk.eyJ1IjoiYXJpZWhlbmRyaWtzZSIsImEiOiJja3U2OXA4N3UzNnA3MnVxaHlmOTkzZHBjIn0.Ykl1qpTqORkJ16KJyLUR7Q'
 
 const geolocateStyle = {

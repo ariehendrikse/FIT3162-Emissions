@@ -1,12 +1,14 @@
-import { Box, MenuItem, Select } from "@material-ui/core"
+import { Box, MenuItem, Select, Typography } from "@material-ui/core"
 import { SelectChangeEvent } from "@mui/material"
 import { useEffect, useState } from "react"
 
 import MapGL, {GeolocateControl, Marker,InteractiveMapProps, MarkerProps } from 'react-map-gl'
 import { Listener } from "../../../../firebase/Listener"
 import HasCoordinates from "../../../../model/HasCoordinates"
-import { MarkerElementType } from "../../infrastructure/MapWithMarker"
-import { CustomMap } from "../CustomMap"
+import { MarkerElementType } from "./MapWithMarker"
+import { CustomMap } from "./CustomMap"
+import SearchLocation from "./SearchLocation"
+import MiscelaneousLocationMarker from "./MiscelaneousLocationMarker"
 
 export type SelectHasCoordinatesProps<T> = {
   itemsListener: Listener<T & HasCoordinates>,
@@ -23,7 +25,7 @@ export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps
 
   const [items, setItems] = useState<(T & HasCoordinates)[]>([])
   const [currentIndex, setCurrentIndex] = useState<number>(0)
-  const currentItem = items[currentIndex] ? items[currentIndex] : undefined
+  const [currentItem, setCurrentItem] = useState<HasCoordinates | undefined>(items[currentIndex] ? items[currentIndex] : undefined)
 
   const [viewport, setViewPort ] = useState<InteractiveMapProps>({
     width: "100%",
@@ -46,48 +48,60 @@ export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps
     const listener = itemsListener(setItems)
     return listener
   }, [])
-  // useEffect(()=> {
-  //   console.log(items.length, "items")
-  // }, [items])
+  useEffect(()=> {
+    if (items.length > 0 ) {
+      setCurrentIndex(0)
+      setCurrentItem(items[currentIndex])
+    }
+  }, [items])
 
   const handleChange = (event: any) => {
     setCurrentIndex(parseInt(event.target.value));
+    setCurrentItem(items[parseInt(event.target.value)])
     if (callback) {
-      callback(items[currentIndex] ? items[currentIndex] : undefined)
+      callback(items[parseInt(event.target.value)] ? items[parseInt(event.target.value)] : undefined)
     } 
   };
+  // @ts-ignore
+  const miscItem = (!currentItem || items.includes(currentItem)) ? [] : [<MiscelaneousLocationMarker item={currentItem} />]
 
   const commonProps = ({viewport, setViewPort})
   return (
       <Box>
+        <Box>
+          <Typography variant='caption'>
+            Location<br/>
+          </Typography>
+            <Select
+            fullWidth
+            variant='outlined'
+            value={currentIndex}
+            onChange={handleChange}
+          >
+            {children}
+            {items.map((item, i) => 
+              <MenuItem value={i}>{render(item)}</MenuItem>)
+            }
+          </Select>
+        </Box>
+        <Box>
+          <SearchLocation callback={(v) => {
+            setCurrentItem(v)
+            if (callback) {callback(v)}
+          }}/>
+        </Box>
         {showMap 
-        ? <div style={{height: 'calc(60vh - 150px)',margin: 20 }}>
+        ? <div style={{height: 'calc(60vh - 150px)',marginBlock: 20 }}>
 
         <CustomMap {...commonProps} >
           {
-            items.map(item => {
+            [...items.map(item => {
               return (<MarkerElement item={item} />)
-            })
-          }
+            }),
+            ...miscItem]}
+          
         </CustomMap>
         </div> : undefined}
-        
-
-        <Select
-          fullWidth
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={currentIndex}
-          label="Age"
-          onChange={handleChange}
-          style={{margin: 20}}
-        >
-          {children}
-          {items.map((item, i) => 
-            <MenuItem value={i}>{render(item)}</MenuItem>)
-          }
-        </Select>
-
       </Box>
   )
 }

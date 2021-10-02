@@ -28,7 +28,7 @@ const VehicleEpaData = (props: CustomFormProps<Vehicle>) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Box m={2} sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1 }}>
         <Grid spacing={1} container style={style} alignItems='center'>
           <Grid item xs={4}>
             <Field label='Make' value={newVehicle?.make} setValue={make => setNewVehicle({...newVehicle as Vehicle, make})}/>
@@ -45,13 +45,20 @@ const VehicleEpaData = (props: CustomFormProps<Vehicle>) => {
           <Grid item xs={6}>
             <Field type='number'  label={"EPA ID"} value={newVehicle?.epaID} setValue={epaID => setNewVehicle({...newVehicle as Vehicle, epaID})} />
           </Grid>
+          
           <Grid item xs={4}>
-            <Field type='number' label="C02g/km" value={newVehicle?.co2_profile?.co2?.toFixed(2)} setValue={co2 => setNewVehicle({...newVehicle as Vehicle, co2_profile: {...newVehicle?.co2_profile, co2: parseInt(co2)}})} />   
+            <Field type='number'  label='Urban litres/100km' value={newVehicle?.co2_profile?.urban?.toFixed(2)} setValue={urban => setNewVehicle({...newVehicle as Vehicle, co2_profile: {...newVehicle?.co2_profile, urban: parseInt(urban)}})}/>
           </Grid>
           <Grid item xs={4}>
             <Field type='number'  label='Combined litres/100km' value={newVehicle?.co2_profile?.combined?.toFixed(2)} setValue={combined => setNewVehicle({...newVehicle as Vehicle, co2_profile: {...newVehicle?.co2_profile, combined: parseInt(combined)}})}/>
           </Grid>
           <Grid item xs={4}>
+            <Field type='number'  label='Highway litres/100km' value={newVehicle?.co2_profile?.highway?.toFixed(2)} setValue={highway => setNewVehicle({...newVehicle as Vehicle, co2_profile: {...newVehicle?.co2_profile, highway: parseInt(highway)}})}/>
+          </Grid>
+          <Grid item xs={6}>
+            <Field type='number' label="C02g/km" value={newVehicle?.co2_profile?.co2?.toFixed(2)} setValue={co2 => setNewVehicle({...newVehicle as Vehicle, co2_profile: {...newVehicle?.co2_profile, co2: parseInt(co2)}})} />   
+          </Grid>
+          <Grid item xs={6}>
             <Field type='number'  label='Cargo Capacity in kg' value={newVehicle?.cargo_capacity_kg} setValue={cargo_capacity_kg => setNewVehicle({...newVehicle as Vehicle, cargo_capacity_kg: parseInt(cargo_capacity_kg)})}/>
           </Grid>
           <Grid item xs={12}>
