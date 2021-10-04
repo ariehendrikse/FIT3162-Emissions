@@ -10,6 +10,7 @@ type Vehicle = {
   co2_profile?: CO2Profile
   cargo_capacity_kg?: number
   vin?: string
+  infrastructureID?: string
 } & Partial<HasCoordinates>
 
 export type CO2Profile = {

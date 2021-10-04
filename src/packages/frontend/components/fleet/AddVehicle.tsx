@@ -1,5 +1,7 @@
 import { Box, Grid, Paper } from "@material-ui/core"
 import { useState } from "react"
+import HasCoordinates from "../../../model/HasCoordinates"
+import Infrastructure from "../../../model/Infrastructure"
 
 import Vehicle from "../../../model/Vehicle"
 import SelectInfrastructure from "../infrastructure/SelectInfrastructure"
@@ -10,6 +12,17 @@ import VehicleEpaData from "./VehicleEpaData"
 
 export const AddVehicle = () => {
   const [vehicle, setVehicle] = useState<Vehicle | undefined>(undefined)
+  const setVehicleLocation = (item?: HasCoordinates) => {
+    try {
+      let infrastructure = item as Infrastructure
+      setVehicle({...vehicle, coordinates: infrastructure?.coordinates, infrastructureID: infrastructure.id} as Vehicle)
+
+    }
+    catch {
+      setVehicle({...vehicle, coordinates: item?.coordinates, infrastructureID: undefined} as Vehicle)
+    }
+    console.log(vehicle)
+  }
 
   return (
     <Paper>
@@ -22,7 +35,7 @@ export const AddVehicle = () => {
             <VehicleEpaData download item={vehicle}/>
           </Grid>
           <Grid item xs={4}>
-            <SelectInfrastructure showMap />
+            <SelectInfrastructure showMap callback={setVehicleLocation}/>
           </Grid>
         </Grid>
       </Box>

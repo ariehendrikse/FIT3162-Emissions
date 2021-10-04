@@ -51,7 +51,7 @@ export const ViewInfrastructure = (props: {item: Infrastructure}) => {
           <MapWithMarker MarkerElement={InfrastructureMarker} item={item}/>
         </Grid>
         <Grid item xs={6}>
-         <InfrastructureForm item={item} />
+          <InfrastructureForm item={item} />
         </Grid>
       </Grid>
     </Paper>)

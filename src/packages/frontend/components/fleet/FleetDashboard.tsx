@@ -1,5 +1,5 @@
 
-import { vehiclesListener } from "../../../firebase/vehicle"
+import vehiclesListener from "../../../firebase/vehicle"
 import Vehicle from "../../../model/Vehicle"
 import { ItemDashboard } from "../site/collections/ItemDashboard"
 import { AddVehicle } from "./AddVehicle"
