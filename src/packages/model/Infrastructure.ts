@@ -1,10 +1,9 @@
-type Infrastrucure = {
-  id?: string
-  coordinates: {
-    lat?: number,
-    lon?: number
-  }
-  name: string
-}
+import HasCoordinates from "./HasCoordinates"
 
-export default Infrastrucure
+type Infrastructure = {
+  id?: string
+  
+  name: string
+} & HasCoordinates
+
+export default Infrastructure

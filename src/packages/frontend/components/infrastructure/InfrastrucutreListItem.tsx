@@ -2,22 +2,29 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/Inbox';
-import CarRentalIcon from '@mui/icons-material/CarRental';
-import { Box } from '@mui/material';
+import Foundation from '@mui/icons-material/Foundation';
+import { Box, Grid, Typography } from '@mui/material';
 import Vehicle from '../../../model/Vehicle';
 import { SelectListItemProps } from '../site/collections/ItemCollection';
-import Infrastrucure from '../../../model/Infrastructure';
+import Infrastructure from '../../../model/Infrastructure';
 
 
-const InfrastrucutreListItem  = (props: SelectListItemProps<Infrastrucure>) => {
+const InfrastrucutreListItem  = (props: SelectListItemProps<Infrastructure>) => {
   const infrastructure = props.item
   return (
-    <Box>
-      <ListItemIcon>
-        <CarRentalIcon />
-      </ListItemIcon>
-      <ListItemText primary={infrastructure.name} />
-    </Box>
+    <Grid container>
+      <Grid item xs={10}>
+        <Typography>
+          {infrastructure.name}
+        </Typography>
+      </Grid>
+      <Grid item xs={2}>
+        <ListItemIcon>
+          <Foundation />
+        </ListItemIcon>
+      </Grid>
+      
+    </Grid>
   )
 }
 

@@ -1,9 +1,10 @@
-import Infrastrucure from "../model/Infrastructure";
 import { db } from "./firebase";
+import { Listener } from "./Listener";
+import Infrastructure from "../model/Infrastructure";
+
 const collection = db.collection('infrastructure')
 
-
-export const addInfrastructure = (infrustrcuture?: Infrastrucure) => {
+export const addInfrastructure = (infrustrcuture?: Infrastructure) => {
   if (infrustrcuture) {
     if (!infrustrcuture.id) {
       collection.add(infrustrcuture)
@@ -14,11 +15,11 @@ export const addInfrastructure = (infrustrcuture?: Infrastrucure) => {
   }
 }
 
-export const infrastructureListener = (resolve: (infrastructure: Infrastrucure[]) => any) => {
+export const infrastructureListener: Listener<Infrastructure> = (resolve: (infrastructure: Infrastructure[]) => any) => {
   return collection.onSnapshot(snapshot => {
-    resolve(snapshot.docs.map( doc => {
-      const data = doc.data()
-      return ({...data, id: doc.id}) as Infrastrucure
-    }))
-  })
+    resolve(snapshot.docs.map(doc => {
+      const data = doc.data();
+      return ({ ...data, id: doc.id }) as Infrastructure;
+    }));
+  });
 }

@@ -1,5 +1,4 @@
-import { FormControl, InputLabel, MenuItem, TextField } from '@material-ui/core';
-import { Autocomplete, Select } from '@mui/material';
+import {  Typography } from '@material-ui/core';
 import { Box } from '@mui/system';
 import * as React from 'react';
 import { useState } from 'react';
@@ -12,7 +11,7 @@ export type FindVehicleProps = {
   style?: React.CSSProperties;
   set: (vehicle?: Vehicle) => any;
 }
-
+ 
 export const FindVehicle = (props: FindVehicleProps) => {
   const {set} = props
   const [year, setYear] = useState<string | undefined>(undefined)
@@ -27,7 +26,7 @@ export const FindVehicle = (props: FindVehicleProps) => {
         model: (model as string),
         year: (year as string),
         epaID: (value?.value as string),
-        trim: value.name
+        trim: value.name,
       })
     }
     else {
@@ -78,7 +77,11 @@ export const FindVehicle = (props: FindVehicleProps) => {
 
   const {style} = props
   return (
-    <Box style={style} m={2}>
+    <Box style={style}>
+      <Typography variant='caption'>
+        EPA Vehicle Search
+      </Typography>
+
       {boxes.map(SelectBox)}
     </Box>
   )

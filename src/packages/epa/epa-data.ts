@@ -87,11 +87,16 @@ export const getVehicleByEPA =   async (epaID?: string) => {
         let make = Array.prototype.slice.call(data.getElementsByTagName("make"))[0].innerHTML
         let model = Array.prototype.slice.call(data.getElementsByTagName("model"))[0].innerHTML
         let combined = mpgTo100lkm(parseInt(Array.prototype.slice.call(data.getElementsByTagName("comb08U"))[0].innerHTML))
+        let highway = mpgTo100lkm(parseInt(Array.prototype.slice.call(data.getElementsByTagName("highway08U"))[0].innerHTML))
+        let urban = mpgTo100lkm(parseInt(Array.prototype.slice.call(data.getElementsByTagName("city08U"))[0].innerHTML))
+
+        
+        
         let co2 = parseInt(Array.prototype.slice.call(data.getElementsByTagName("co2"))[0].innerHTML) / 1.6
 
         resolve({
           year, make, model,
-          co2_profile: {co2, combined}
+          co2_profile: {co2, combined, highway, urban}
         })
       })
       .catch(error => {

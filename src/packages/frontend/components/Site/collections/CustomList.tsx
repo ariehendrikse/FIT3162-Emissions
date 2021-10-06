@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton';
 import { SelectListItemProps } from './ItemCollection';
 
@@ -20,15 +21,17 @@ export default function ListCustomItems<T>(props: ListCustomItemsProps<T>) {
   };
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <List component="nav" aria-label="main mailbox folders">
+    <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.paper' }}>
+      <List style={{maxHeight: 'calc(100vh - 150px)', overflow: 'auto'}} component='nav'  aria-label="main mailbox folders" >
         {items.map((item , i) => 
+        <ListItem disablePadding>
           <ListItemButton
             selected={selectedIndex === i}
             onClick={handleListItemClick(i)}
           >
             {item}
           </ListItemButton>
+        </ListItem>
 
         )}
       </List>
