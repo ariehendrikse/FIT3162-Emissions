@@ -3,6 +3,7 @@ import { Box, Button, IconButton, Table, Toolbar, Typography } from "@material-u
 import { Menu , ChevronRight } from "@material-ui/icons";
 // import MapComponent from "../vehicle-routing/map";
 // import PermanentDrawer from "../vehicle-routing/drawer";
+import LocationSearchInput from "../vehicle-routing/autofill";
 import MapWithADirectionsRenderer from "../vehicle-routing/map";
 import Overlay from "../vehicle-routing/overlay";
 // import { Button } from '@material-ui/core';
@@ -46,7 +47,8 @@ const PageRouting = () => {
                 {/* <MapComponent /> 
                 <PermanentDrawer/> */}
                 <MapWithADirectionsRenderer/>
-                <Overlay/>
+                {/* <Overlay/> */}
+                <LocationSearchInput/>
 
               </Route>
               <Route path="/fleet">
