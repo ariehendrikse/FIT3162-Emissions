@@ -134,16 +134,17 @@ export function optimalPathEmissions(routes: google.maps.DirectionsRoute[], vehi
    let foundGoal:Boolean=false;
 
    //initial seeding
-   for (let i:number=0; i++ ; i<routes.length)
+   for (let i:number=0; i<routes.length ; i++ )
    {
-       for (let j:number=0;j++;j<vehicles.length)
+       for (let j:number=0;j<vehicles.length ; j++)
        {
           let profile=vehicles[j].co2_profile
            if(profile)
            {
            
-            
-  
+
+            if(routes[i].legs[0].steps[0].distance && routes[i].legs[0].steps[0].duration)
+            {
             let firstStepDistance:number= routes[i].legs[0].steps[0].distance.value;
   
             let firstStepDuration:number=routes[i].legs[0].steps[0].duration.value;
@@ -157,6 +158,11 @@ export function optimalPathEmissions(routes: google.maps.DirectionsRoute[], vehi
                 minqueue.insert(node);
 
             }
+
+            }
+            
+  
+            
 
             
 
@@ -211,25 +217,30 @@ export function optimalPathEmissions(routes: google.maps.DirectionsRoute[], vehi
 
        if(step<routes[route].legs[leg].steps.length)
        {
-        let dist:number=routes[route].legs[leg].steps[step].distance.value;
-        let dur:number=routes[route].legs[leg].steps[step].duration.value;
-        let Cprofile=vehicles[vehicle].co2_profile;
- 
-        if(Cprofile )
-        {
-         let addEmissions:number=getEmissions(dist,dur,Cprofile);
+           if(routes[route].legs[leg].steps[step].distance && routes[route].legs[leg].steps[step].duration)
+           {
+            let dist:number=routes[route].legs[leg].steps[step].distance.value;
+            let dur:number=routes[route].legs[leg].steps[step].duration.value;
+            let Cprofile=vehicles[vehicle].co2_profile;
+     
+            if(Cprofile )
+            {
+             let addEmissions:number=getEmissions(dist,dur,Cprofile);
+    
+             if(addEmissions>=0)
+             {
+                emissionAccum=emissionAccum+addEmissions;
+                let childNode:Node={routeIndex:route,legIndex:leg,stepIndex:step,vehicleIndex:vehicle,emissions:emissionAccum};
+                minqueue.insert(childNode);
+    
+             }
+             
+     
+     
+            }
 
-         if(addEmissions>=0)
-         {
-            emissionAccum=emissionAccum+addEmissions;
-            let childNode:Node={routeIndex:route,legIndex:leg,stepIndex:step,vehicleIndex:vehicle,emissions:emissionAccum};
-            minqueue.insert(childNode);
-
-         }
-         
- 
- 
-        }
+           }
+        
 
        }
 
