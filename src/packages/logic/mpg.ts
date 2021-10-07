@@ -54,11 +54,14 @@ export class MinHeap {
     private heapUp(index: number = this.list.length-1)
     {
         let parent=this.parent(index);
-        if(parent>=0 && this.list[parent].emissions>this.list[index].emissions)
+        let parentElement = this.list[parent]
+        if (parentElement) {
+        if(parent>=0 && parentElement.emissions>this.list[index].emissions)
         {
             this.swap(parent,index);
             this.heapUp(parent);
         }
+    }
 
     }
 
@@ -68,6 +71,10 @@ export class MinHeap {
         let right=this.rightChild(index);
         let left=this.leftChild(index);
 
+        let rightChild = this.list[right]
+        let leftChild = this.list[left]
+
+        if (rightChild &&leftChild) {
         if (right<this.list.length && this.list[index].emissions>this.list[right].emissions)
         {
             minimum=right;
@@ -84,6 +91,7 @@ export class MinHeap {
             this.heapDown(minimum);
 
         }
+    }
 
     }
 
@@ -180,6 +188,7 @@ export function optimalPathEmissions(routes: google.maps.DirectionsRoute[], vehi
    while(!foundGoal && !minqueue.isEmpty())
    {
        let minimumOption=minqueue.getMin();
+       if (minimumOption) {
        if (minimumOption.emissions===-1)
        {
            break;
@@ -254,14 +263,16 @@ export function optimalPathEmissions(routes: google.maps.DirectionsRoute[], vehi
 
        
 
-   }
+    }
+}
 
    return solution;
 
 
-
+   
 
 }
+
 
 export function getEmissions(distance:number,duration:number,emissionProfile:CO2Profile)
 {
@@ -313,4 +324,4 @@ export function getEmissions(distance:number,duration:number,emissionProfile:CO2
 
 
 
-export default mpgTo100lkm
+export default mpgTo100lkm;

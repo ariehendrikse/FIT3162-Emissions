@@ -48,7 +48,7 @@ const MapWithADirectionsRenderer = compose(
             directions: result,
             
           });
-          const routes = result.routes
+          // const routes = result.routes
           if (result ) {
           const emissions: HasEmissions = mpg.optimalPathEmissions(result.routes, testVehicle )
           console.log(emissions.emissions)
