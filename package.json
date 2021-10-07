@@ -5,6 +5,12 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+<<<<<<< HEAD
+=======
+    "@mui/icons-material": "^5.0.1",
+    "@mui/material": "^5.0.1",
+    "@mui/material": "^5.0.2",
+>>>>>>> feature/newVehicle
     "@react-google-maps/api": "^2.2.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -24,6 +30,9 @@
     "react-dom": "^17.0.2",
     "react-firebaseui": "^5.0.2",
     "react-google-maps": "^9.4.5",
+    "react-google-places-autocomplete": "^3.3.2",
+    "react-map-gl": "^6.1.17",
+    "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.1",
     "react-scripts": "4.0.3",
     "react-select": "^5.0.0",
@@ -56,10 +65,11 @@
     ]
   },
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/google.maps": "^3.45.6",
     "@types/googlemaps": "^3.43.3",
-    "@types/express": "^4.17.13",
     "@types/node": "^12.20.27",
+    "@types/react-places-autocomplete": "^7.2.9",
     "@types/react-router-dom": "^5.1.8",
     "@ubilabs/google-maps-react-hooks": "^1.5.0",
     "nodemon": "^2.0.13",

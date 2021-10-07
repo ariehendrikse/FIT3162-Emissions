@@ -139,15 +139,19 @@ export function optimalPathEmissions(routes: google.maps.DirectionsRoute[], vehi
        for (let j:number=0;j<vehicles.length ; j++)
        {
           let profile=vehicles[j].co2_profile
+
            if(profile)
            {
+               let firstStepDi = routes[i].legs[0].steps[0].distance;
+               let firstStepDu = routes[i].legs[0].steps[0].duration
+
            
 
-            if(routes[i].legs[0].steps[0].distance && routes[i].legs[0].steps[0].duration)
+            if(firstStepDi && firstStepDu)
             {
-            let firstStepDistance:number= routes[i].legs[0].steps[0].distance.value;
+            let firstStepDistance:number= firstStepDi.value;
   
-            let firstStepDuration:number=routes[i].legs[0].steps[0].duration.value;
+            let firstStepDuration:number=firstStepDu.value;
   
             let emissionVal:number= getEmissions(firstStepDistance,firstStepDuration,profile);
 
@@ -217,10 +221,12 @@ export function optimalPathEmissions(routes: google.maps.DirectionsRoute[], vehi
 
        if(step<routes[route].legs[leg].steps.length)
        {
-           if(routes[route].legs[leg].steps[step].distance && routes[route].legs[leg].steps[step].duration)
+           let stepDi = routes[route].legs[leg].steps[step].distance;
+           let stepDu = routes[route].legs[leg].steps[step].duration
+           if(stepDi && stepDu)
            {
-            let dist:number=routes[route].legs[leg].steps[step].distance.value;
-            let dur:number=routes[route].legs[leg].steps[step].duration.value;
+            let dist:number=stepDi.value;
+            let dur:number=stepDu.value;
             let Cprofile=vehicles[vehicle].co2_profile;
      
             if(Cprofile )

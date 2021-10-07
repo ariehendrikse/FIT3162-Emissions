@@ -3,7 +3,7 @@ import { Add } from "@material-ui/icons"
 import { useEffect, useState } from "react"
 import { getMakesForYear } from "../../../epa/epa-data"
 import { addInfrastructure, infrastructureListener } from "../../../firebase/infrastructure"
-import vehiclesListener from "../../../firebase/vehicle"
+import {vehiclesListener} from "../../../firebase/vehicle";
 import Infrastructure from "../../../model/Infrastructure"
 import Vehicle from "../../../model/Vehicle"
 import CustomFormProps from "../site/collections/CustomFormProps"

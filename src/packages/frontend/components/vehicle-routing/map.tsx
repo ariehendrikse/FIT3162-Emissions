@@ -1,4 +1,8 @@
 import React from "react";
+import * as mpg from "../../../logic/mpg";
+import { HasEmissions } from "../../../logic/mpg";
+import Vehicle from "../../../model/Vehicle";
+import {CO2Profile} from "../../../model/Vehicle";
 
 const { compose, withProps, lifecycle } = require("recompose");
 const {
@@ -7,6 +11,13 @@ const {
   GoogleMap,
   DirectionsRenderer,
 } = require("react-google-maps");
+
+let testVehicle: Vehicle[] = [{
+  make: "Toyota",
+  model: "Camry",
+  year: "1999",
+  co2_profile: {highway: 50, combined: 30, urban: 80, co2: 30}
+}];
 
 const MapWithADirectionsRenderer = compose(
   withProps({
@@ -21,17 +32,27 @@ const MapWithADirectionsRenderer = compose(
     componentDidMount() {
       const DirectionsService = new google.maps.DirectionsService();
 
+    //   let coords = [];
+    // let waypoints = [];
+      // places.map((place) => coords.push({ lat: place.lat, lng: place.lng }));
+
       DirectionsService.route({
         origin: new google.maps.LatLng(-37.8774, 145.0450),
         destination: new google.maps.LatLng(-37.9144, 145.1300),
         provideRouteAlternatives: true,
         travelMode: google.maps.TravelMode.DRIVING,
       }, (result, status) => {
-        // Update to display multiple routes concurrently
+        // Updated to display multiple routes concurrently
         if (status === google.maps.DirectionsStatus.OK) {
           this.setState({
             directions: result,
+            
           });
+          // const routes = result.routes
+          // if (result ) {
+          // const emissions: HasEmissions = mpg.optimalPathEmissions(result.routes, testVehicle )
+          // console.log(emissions.emissions)
+          // }
         } else {
           console.error(`error fetching directions ${result}`);
         }
@@ -43,10 +64,11 @@ const MapWithADirectionsRenderer = compose(
     defaultZoom={7}
     defaultCenter={new google.maps.LatLng(-37.8774, 145.0450)}
   >
-    {props.directions && <DirectionsRenderer directions={props.directions} />}
+    {props.directions && <DirectionsRenderer directions={props.directions} panel={ document.getElementById('panel') }/>}
+    <div id="panel"></div>
   </GoogleMap>
 );
 
-<MapWithADirectionsRenderer />
+{/* <MapWithADirectionsRenderer /> */}
 
 export default React.memo(MapWithADirectionsRenderer)
