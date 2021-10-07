@@ -1,7 +1,7 @@
 
 import vehiclesListener from "../../../firebase/vehicle"
 import Vehicle from "../../../model/Vehicle"
-import { ItemDashboard } from "../site/collections/ItemDashboard"
+import { ItemDashboard } from "../site-wide/collections/ItemDashboard"
 import { AddVehicle } from "./AddVehicle"
 import VechicleListItem from "./VehicleListItem"
 import ViewVehicle from "./ViewVehicle"

@@ -4,9 +4,9 @@ import { getVehicleByEPA } from "../../../epa/epa-data";
 import { db } from "../../../firebase/firebase";
 import { addVehicle, deleteVehicle } from "../../../firebase/vehicle";
 import Vehicle from "../../../model/Vehicle";
-import CustomFormProps from "../site/collections/CustomFormProps";
-import DeleteButton from "../site/DeleteButton";
-import Field from "../site/Field";
+import CustomFormProps from "../site-wide/collections/CustomFormProps";
+import DeleteButton from "../site-wide/DeleteButton";
+import Field from "../site-wide/Field";
 
 
 

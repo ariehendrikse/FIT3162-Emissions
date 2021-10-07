@@ -5,7 +5,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import Foundation from '@mui/icons-material/Foundation';
 import Infrastructure from '../../../model/Infrastructure';
 import HasCoordinates from '../../../model/HasCoordinates';
-import CustomMarker from '../site/mapbox/CustomMarker';
+import CustomMarker from '../site-wide/mapbox/CustomMarker';
 
 const InfrastructureMarker = (props: {item: Infrastructure | HasCoordinates}) => <CustomMarker {...props}><Foundation /></CustomMarker>
 
