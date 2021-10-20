@@ -5,7 +5,7 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import Foundation from '@mui/icons-material/Foundation';
 import { Box, Grid, Typography } from '@mui/material';
 import Vehicle from '../../../model/Vehicle';
-import { SelectListItemProps } from '../site/collections/ItemCollection';
+import { SelectListItemProps } from '../site-wide/collections/ItemCollection';
 import infrastructure from '../../../model/Infrastructure';
 
 

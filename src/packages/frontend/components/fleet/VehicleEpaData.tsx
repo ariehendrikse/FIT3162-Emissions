@@ -4,8 +4,8 @@ import { getVehicleByEPA } from "../../../epa/epa-data";
 import { db } from "../../../firebase/firebase";
 import { addVehicle } from "../../../firebase/vehicle";
 import Vehicle from "../../../model/Vehicle";
-import CustomFormProps from "../site/collections/CustomFormProps";
-import Field from "../site/Field";
+import CustomFormProps from "../site-wide/collections/CustomFormProps";
+import Field from "../site-wide/Field";
 
 
 

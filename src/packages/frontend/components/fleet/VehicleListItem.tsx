@@ -5,7 +5,7 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import CarRentalIcon from '@mui/icons-material/CarRental';
 import { Box } from '@mui/material';
 import Vehicle from '../../../model/Vehicle';
-import { SelectListItemProps } from '../site/collections/ItemCollection';
+import { SelectListItemProps } from '../site-wide/collections/ItemCollection';
 
 
 const VechicleListItem  = (props: SelectListItemProps<Vehicle>) => {
