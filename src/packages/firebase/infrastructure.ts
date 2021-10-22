@@ -14,6 +14,11 @@ export const addInfrastructure = (infrustrcuture?: Infrastructure) => {
     }
   }
 }
+export const deleteInfrastructure = (infrastructure?: Infrastructure) => () => {
+  if (infrastructure) {
+    collection.doc(infrastructure.id).delete()
+  }
+}
 
 export const infrastructureListener: Listener<Infrastructure> = (resolve: (infrastructure: Infrastructure[]) => any) => {
   return collection.onSnapshot(snapshot => {

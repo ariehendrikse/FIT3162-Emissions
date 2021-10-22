@@ -5,7 +5,7 @@ import HasCoordinates from '../../../model/HasCoordinates';
 import './Marker.css'
 import infrastructure from '../../../model/Infrastructure';
 import Foundation from '@mui/icons-material/Foundation';
-import { CustomMap } from '../site/CustomMap';
+import { CustomMap } from '../site-wide/mapbox/CustomMap';
 
 export type MarkerElementType = (props: { item: HasCoordinates; }) => JSX.Element
 

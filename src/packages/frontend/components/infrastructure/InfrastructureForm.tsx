@@ -2,8 +2,8 @@ import { Box, Button, Grid, List, ListItem, ListItemIcon, ListItemText, Paper, T
 import { Add } from "@material-ui/icons"
 import { useEffect, useState } from "react"
 import { getMakesForYear } from "../../../epa/epa-data"
-import { addInfrastructure, infrastructureListener } from "../../../firebase/infrastructure"
-import {vehiclesListener} from "../../../firebase/vehicle";
+import { addInfrastructure, deleteInfrastructure, infrastructureListener } from "../../../firebase/infrastructure"
+import {deleteVehicle, vehiclesListener} from "../../../firebase/vehicle";
 import Infrastructure from "../../../model/Infrastructure"
 import Vehicle from "../../../model/Vehicle"
 import CustomFormProps from "../site-wide/collections/CustomFormProps"
@@ -15,6 +15,7 @@ import InfrastructureListItem from "./InfrastrucutreListItem"
 import MapWithMarker from "../site-wide/mapbox/MapWithMarker"
 import InfrastructureMarker from "./InfrastructureMarker"
 import SelectHasCoordinates from "../site-wide/mapbox/SelectHasCoordinates"
+import DeleteButton from "../site-wide/DeleteButton"
 
 
 
@@ -40,6 +41,13 @@ const InfrastructureForm = (props: CustomFormProps<Infrastructure>) => {
           <Grid item xs={12}>
             <Button fullWidth style={{color: 'white', backgroundColor:'green'}} type='submit' >Save</Button>
           </Grid>
+          {
+            !download ? 
+            <Grid item xs={12}>
+              <DeleteButton deleteAction={deleteInfrastructure(item)}/>
+            </Grid> :
+            undefined
+          }
         </Grid>
       </Box>
     </form>
