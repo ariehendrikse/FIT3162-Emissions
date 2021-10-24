@@ -30,6 +30,8 @@ export class MinHeap {
     {
         this.list.push(element);
         this.heapUp();
+        console.log("the heap is");
+        console.log(this.list);
 
     }
 
@@ -39,14 +41,24 @@ export class MinHeap {
     }
 
     public getMin():Node {
-        if(this.list.length>0)
+        if(this.list.length>1)
         {
             let min=this.list[0];
-            this.list[0]=this.list[-1];
+            console.log('get min')
+            console.log(this.list[this.list.length-1]);
+            this.list[0]=this.list[this.list.length-1];
             this.list.pop();
+            console.log(this.list);
             this.heapDown();
+            console.log(this.list)
             return min;
 
+        }
+        else if (this.list.length>0)
+        {
+            let min:Node =this.list[0];
+            this.list.pop();
+            return min;
         }
         return {routeIndex: -1, legIndex: -1, stepIndex: -1 ,vehicleIndex:-1,emissions:-1};
     }
@@ -54,11 +66,14 @@ export class MinHeap {
     private heapUp(index: number = this.list.length-1)
     {
         let parent=this.parent(index);
-        if(parent>=0 && this.list[parent].emissions>this.list[index].emissions)
+        let parentElement = this.list[parent]
+        if (parentElement) {
+        if(parent>=0 && parentElement.emissions>this.list[index].emissions)
         {
             this.swap(parent,index);
             this.heapUp(parent);
         }
+    }
 
     }
 
@@ -68,6 +83,10 @@ export class MinHeap {
         let right=this.rightChild(index);
         let left=this.leftChild(index);
 
+        let rightChild = this.list[right]
+        let leftChild = this.list[left]
+
+        if (rightChild &&leftChild) {
         if (right<this.list.length && this.list[index].emissions>this.list[right].emissions)
         {
             minimum=right;
@@ -84,6 +103,7 @@ export class MinHeap {
             this.heapDown(minimum);
 
         }
+    }
 
     }
 
@@ -158,6 +178,7 @@ export function optimalPathEmissions(routes: google.maps.DirectionsRoute[], vehi
             if(emissionVal>=0)
             {
                 let node:Node={routeIndex:i,legIndex:0,stepIndex:0,vehicleIndex:j,emissions:emissionVal};
+                
 
                 minqueue.insert(node);
 
@@ -180,6 +201,9 @@ export function optimalPathEmissions(routes: google.maps.DirectionsRoute[], vehi
    while(!foundGoal && !minqueue.isEmpty())
    {
        let minimumOption=minqueue.getMin();
+       console.log('minimum option is')
+       console.log(minimumOption);
+       if (minimumOption) {
        if (minimumOption.emissions===-1)
        {
            break;
@@ -237,6 +261,8 @@ export function optimalPathEmissions(routes: google.maps.DirectionsRoute[], vehi
              {
                 emissionAccum=emissionAccum+addEmissions;
                 let childNode:Node={routeIndex:route,legIndex:leg,stepIndex:step,vehicleIndex:vehicle,emissions:emissionAccum};
+                console.log('this is the child node');
+                console.log(childNode);
                 minqueue.insert(childNode);
     
              }
@@ -254,14 +280,16 @@ export function optimalPathEmissions(routes: google.maps.DirectionsRoute[], vehi
 
        
 
-   }
+    }
+}
 
    return solution;
 
 
-
+   
 
 }
+
 
 export function getEmissions(distance:number,duration:number,emissionProfile:CO2Profile)
 {
@@ -313,4 +341,4 @@ export function getEmissions(distance:number,duration:number,emissionProfile:CO2
 
 
 
-export default mpgTo100lkm
+export default mpgTo100lkm;

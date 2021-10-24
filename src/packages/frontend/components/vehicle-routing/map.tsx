@@ -49,10 +49,10 @@ const MapWithADirectionsRenderer = compose(
             
           });
           // const routes = result.routes
-          // if (result ) {
-          // const emissions: HasEmissions = mpg.optimalPathEmissions(result.routes, testVehicle )
-          // console.log(emissions.emissions)
-          // }
+          if (result ) {
+          const emissions: HasEmissions = mpg.optimalPathEmissions(result.routes, testVehicle )
+          console.log(emissions.emissions)
+          }
         } else {
           console.error(`error fetching directions ${result}`);
         }
