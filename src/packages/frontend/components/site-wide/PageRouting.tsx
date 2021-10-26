@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Box, Button, IconButton, Table, Toolbar, Typography } from "@material-ui/core";
 import { Menu , ChevronRight } from "@material-ui/icons";
-// import MapComponent from "../vehicle-routing/map";
-// import PermanentDrawer from "../vehicle-routing/drawer";
 import LocationSearchInput from "../vehicle-routing/autofill";
 import MapWithADirectionsRenderer from "../vehicle-routing/map";
 import Overlay from "../vehicle-routing/overlay";
@@ -45,11 +43,9 @@ const PageRouting = () => {
                 <EmissionsDashboard />
               </Route>
               <Route path="/route">
-                {/* <MapComponent /> 
-                <PermanentDrawer/> */}
+
                 <MapWithADirectionsRenderer/>
-                {/* <Overlay/> */}
-                <LocationSearchInput/>
+
 
               </Route>
               <Route path="/fleet">
@@ -68,5 +64,6 @@ const PageRouting = () => {
   );
 
 } 
+
 
 export default PageRouting
