@@ -50,6 +50,7 @@ export function SearchLocation(props: {callback?: (item: HasCoordinates) => any}
         <TextField
           {...params}
           value={search}
+          placeholder={"Search for custom location"}
           onChange={e=>setSearch(e.target.value)}
           InputProps={{
             ...params.InputProps,

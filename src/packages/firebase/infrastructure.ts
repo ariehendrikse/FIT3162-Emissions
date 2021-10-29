@@ -19,7 +19,7 @@ export const deleteInfrastructure = (infrastructure?: Infrastructure) => () => {
     collection.doc(infrastructure.id).delete()
   }
 }
-
+//listen for all infrastructure changes
 export const infrastructureListener: Listener<Infrastructure> = (resolve: (infrastructure: Infrastructure[]) => any) => {
   return collection.onSnapshot(snapshot => {
     resolve(snapshot.docs.map(doc => {

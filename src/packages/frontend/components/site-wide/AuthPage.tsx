@@ -1,22 +1,29 @@
 
 import { useEffect, useState} from 'react';
 import * as React from 'react';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import EmissionsDashboard from '../emissions/EmissionsDashboard';
 import firebase from 'firebase';
 import MapComponent from '../vehicle-routing/map';
-import { db } from '../../../firebase/firebase';
 import { Box, Card, CardContent, CircularProgress, Grid, Typography } from '@material-ui/core';
 import PageRouting from './PageRouting';
-
+import { StyledFirebaseAuth} from 'react-firebaseui'
+import { useLocation } from 'react-router';
+import { AuthContext } from './AuthProvider';
 // Configure FirebaseUI.
 const uiConfig = {
   // Popup signin flow rather than redirect flow.
   signInFlow: 'popup',
   prompt: "Sign into Emissions app",
   signInOptions: [
-    firebase.auth.EmailAuthProvider.PROVIDER_ID
-  ],
+    {
+      provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      signInMethod: firebase.auth.GoogleAuthProvider.GOOGLE_SIGN_IN_METHOD,
+      requireDisplayName: true,
+      disableSignUp: {
+        status: false
+      }
+    }  ],
+  
   callbacks: {
     // Avoid redirects after sign-in.
     signInSuccessWithAuthResult: () => false,
@@ -26,8 +33,8 @@ const uiConfig = {
 export default function AuthPage() {
   const [isSignedIn, setIsSignedIn] = useState(true); // Local signed-in state.
   const [loading, setLoading] = useState(true)
-  console.log(db.app)
-
+  const user = React.useContext(AuthContext)
+  
   // Listen to the Firebase Auth state and set the local state.
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
@@ -36,7 +43,7 @@ export default function AuthPage() {
     });
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
   }, []);
-  if (loading) return (
+  if (user === undefined) return (
         <Grid
           container
           spacing={0}
@@ -57,7 +64,7 @@ export default function AuthPage() {
       </Grid>
   )
       
-  else if (!isSignedIn) return (   
+  if (user == null) return (   
     <div style={{height:'100%', width: '100%', margin: 0, display: "flex",
     justifyContent: "center",
     alignItems: "center"}}>
@@ -74,7 +81,7 @@ export default function AuthPage() {
             
           <Grid item xl={12}>         
               <Box>
-                <Typography variant='h1' style={{color:'white'}}>Emissions app</Typography>
+                <Typography variant='h1' style={{color:'white'}}>Emissions Optimiser</Typography>
               </Box>
           </Grid>   
 

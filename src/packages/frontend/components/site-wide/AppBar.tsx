@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { alpha, makeStyles, Theme, createStyles, ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './theme';
 
@@ -16,6 +16,7 @@ import firebase from 'firebase';
 // import emissions_logo from '../../images/.png'
 import { Button } from '@material-ui/core';
 import { Eco } from '@material-ui/icons';
+import { AuthContext } from './AuthProvider';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -88,7 +89,7 @@ export default function MainAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
 
-
+  const user = useContext(AuthContext)
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -111,6 +112,7 @@ export default function MainAppBar() {
   };
 
   const menuId = 'primary-search-account-menu';
+  console.log("User", user)
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -123,6 +125,7 @@ export default function MainAppBar() {
     >
 
       <MenuItem onClick={() => (firebase.auth().signOut())}>Sign out</MenuItem>
+      {user?.admin ? <MenuItem onClick={() => {}}>Add User</MenuItem> : null}
     </Menu>
   );
 

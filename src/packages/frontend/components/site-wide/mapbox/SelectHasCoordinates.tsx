@@ -22,8 +22,6 @@ export type SelectHasCoordinatesProps<T> = {
 export default function SelectHasCoordinates<T>(props: SelectHasCoordinatesProps<T>) {
     
   const { children, showMap, callback, itemsListener, MarkerElement, render} = props
-  
-
 
   const [items, setItems] = useState<(T & HasCoordinates)[]>([])
   const [currentIndex, setCurrentIndex] = useState<number>(0)

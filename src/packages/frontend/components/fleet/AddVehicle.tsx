@@ -24,12 +24,17 @@ export const AddVehicle = () => {
     console.log(vehicle)
   }
 
+  const setVehicleSpecs = (newVehicle?: Vehicle) => {
+    setVehicle({...newVehicle, coordinates: vehicle?.coordinates, infrastructureID: vehicle?.id} as Vehicle)
+
+  }
+
   return (
     <Paper>
       <Box p={2}>
         <Grid container spacing={2}>
           <Grid item xs={3}>
-            <FindVehicle set={setVehicle}/>
+            <FindVehicle set={setVehicleSpecs}/>
           </Grid>
           <Grid item xs={5}>
             <VehicleEpaData download item={vehicle}/>
