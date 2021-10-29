@@ -28,7 +28,6 @@ export function ItemDashboard<T>(props: ItemDashboardProps<T>): JSX.Element {
     })
     return listener
   }, [])
-
   return (
     <Box m={3}>
       <Paper>
@@ -49,14 +48,11 @@ export function ItemDashboard<T>(props: ItemDashboardProps<T>): JSX.Element {
                 <ViewItem item={items[itemIndex - 1]} />
               }
             </Grid>
-
           </Grid>
         </Box>
       </Paper>
     </Box>
-
   )
-
 }
 
 const AddButton = () => {
