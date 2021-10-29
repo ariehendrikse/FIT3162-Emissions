@@ -18,7 +18,7 @@ import SelectHasCoordinates from "../site-wide/mapbox/SelectHasCoordinates"
 import DeleteButton from "../site-wide/DeleteButton"
 
 
-
+// form for inputting new infrastrucuter
 const InfrastructureForm = (props: CustomFormProps<Infrastructure>) => {
   const {item, style, download} = props
   const [newInfrastructure, setNewInfrastructure] = useState<Infrastructure | undefined>(item)

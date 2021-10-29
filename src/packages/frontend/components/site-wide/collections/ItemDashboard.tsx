@@ -1,4 +1,4 @@
-import { Box, Grid, ListItemIcon, ListItemText, Paper } from "@material-ui/core"
+import { Box, Grid, ListItem, ListItemIcon, ListItemText, Paper } from "@material-ui/core"
 import { Add } from "@material-ui/icons"
 import { useEffect, useState } from "react"
 import { Listener } from "../../../../firebase/Listener"
@@ -15,7 +15,7 @@ type ItemDashboardProps<T> = {
 
 export function ItemDashboard<T>(props: ItemDashboardProps<T>): JSX.Element {
   const [items, setItems] = useState<T[]>([])
-  const [itemIndex, setItemIndex] = useState(-1)
+  const [itemIndex, setItemIndex] = useState(0)
   const {listenerFunction, SelectItem, AddItem, ViewItem} = props
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export function ItemDashboard<T>(props: ItemDashboardProps<T>): JSX.Element {
       <Paper>
         <Box m={1}>
           <Grid container spacing={2}>
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <ListCustomItems 
                 items={
                   [<AddButton />, ...items.map(v => <SelectItem item={v}/>)]
@@ -42,12 +42,11 @@ export function ItemDashboard<T>(props: ItemDashboardProps<T>): JSX.Element {
                 onSelect={setItemIndex}
               />
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={9}>
               { itemIndex === 0 ?
                 <AddItem /> :
-                itemIndex === -1 ? 
-                "Select or add an item"
-                : <ViewItem item={items[itemIndex - 1]} />
+
+                <ViewItem item={items[itemIndex - 1]} />
               }
             </Grid>
 
@@ -62,11 +61,11 @@ export function ItemDashboard<T>(props: ItemDashboardProps<T>): JSX.Element {
 
 const AddButton = () => {
   return (
-    <Box>
+    <ListItem style={{padding: 0, margin: 0 , borderRadius: 4, border: 'solid green 1px'}}>
       <ListItemIcon>
         <Add />
       </ListItemIcon>
       <ListItemText primary={'Add'} />
-    </Box>
+    </ListItem>
   )
 }

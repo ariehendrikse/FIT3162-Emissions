@@ -6,17 +6,19 @@ import CarRentalIcon from '@mui/icons-material/CarRental';
 import { Box } from '@mui/material';
 import Vehicle from '../../../model/Vehicle';
 import { SelectListItemProps } from '../site-wide/collections/ItemCollection';
+import { ListItem } from '@material-ui/core';
+import { DirectionsCar } from '@material-ui/icons';
 
 
 const VechicleListItem  = (props: SelectListItemProps<Vehicle>) => {
   const vehicle = props.item
   return (
-    <Box>
+    <ListItem>
       <ListItemIcon>
-        <CarRentalIcon />
+        <DirectionsCar />
       </ListItemIcon>
-      <ListItemText primary={vehicle.model} />
-    </Box>
+      <ListItemText secondary={`VIN: ${vehicle.vin}`} primary={`${vehicle.make} ${vehicle.model}`} />
+    </ListItem>
   )
 }
 
